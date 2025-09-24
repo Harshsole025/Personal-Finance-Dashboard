@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+@layer base {
+  :root { color-scheme: light; }
+  .dark { color-scheme: dark; }
+  body { @apply bg-zinc-50 text-zinc-900 antialiased; }
+  .dark body { @apply bg-zinc-950 text-zinc-100; }
+  .theme-transition * { @apply transition-colors duration-300; }
+  h1, h2, h3, h4, h5, h6 { @apply text-zinc-900 dark:text-zinc-100; }
+  p, span, li, td { @apply text-zinc-800 dark:text-zinc-200; }
+  label, small { @apply text-zinc-700 dark:text-zinc-300; }
+  a { @apply text-blue-600 dark:text-blue-400; }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors;
+  }
+  .btn-primary {
+    @apply btn bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white;
+  }
+  .btn-outline {
+    @apply btn border border-zinc-300 bg-white hover:bg-zinc-50 text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:bg-zinc-800;
+  }
+  .card { @apply rounded-lg border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900; }
+  .input { @apply w-full rounded-md border border-zinc-300 bg-white text-zinc-900 placeholder-zinc-400 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder-zinc-500; }
+  .badge {
+    @apply inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium border;
+  }
+  .badge-green { @apply badge border-emerald-200 text-emerald-700 bg-emerald-50 dark:border-emerald-700/50 dark:text-emerald-300 dark:bg-emerald-900/30; }
+  .badge-rose { @apply badge border-rose-200 text-rose-700 bg-rose-50 dark:border-rose-700/50 dark:text-rose-300 dark:bg-rose-900/30; }
+  .table-th { @apply text-left border-b border-zinc-200 bg-zinc-50 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-300; }
+  .table { @apply w-full text-sm; }
+  .table td { @apply text-zinc-800 dark:text-zinc-200; }
+  .table th { @apply text-zinc-700 dark:text-zinc-300; }
+  .header-link { @apply text-zinc-900 hover:text-black dark:text-zinc-100 dark:hover:text-white; }
+  .muted { @apply text-zinc-600 dark:text-zinc-400; }
+}
+
+/* Improve visibility of the calendar picker icon in dark mode */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0);
+}
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(1.1);
+}
+
